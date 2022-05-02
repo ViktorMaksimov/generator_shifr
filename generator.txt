@@ -1,0 +1,30 @@
+import java.util.Random;
+import java.util.Scanner;
+ 
+public class Main {
+    private static final String DICT = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%-";
+    private static Random random = new Random();
+ 
+    public static String generate(int length) {
+        StringBuilder sb = new StringBuilder();
+ 
+        for ( ; length > 0; --length )
+            sb.append(DICT.charAt(random.nextInt(DICT.length())));
+ 
+        return sb.toString();
+    }
+ 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+ 
+        while ( true ) {
+            System.out.print("Количество символов: ");
+            if ( ! scanner.hasNextInt() )
+                break;
+            int length = scanner.nextInt();
+            if ( length < 1 )
+                break;
+            System.out.println("Пароль: " + generate(length));
+        }
+    }
+}
